@@ -1,0 +1,48 @@
+{
+  "name": "aura-be",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/app.ts",
+  "scripts": {
+    "start": "nodemon",
+    "test": "jest",
+    "lint": "eslint src/ --ignore-path .gitignore --ext .ts",
+    "lint:fix": "npm run lint -- --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chrisli30/aura-be.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chrisli30/aura-be/issues"
+  },
+  "homepage": "https://github.com/chrisli30/aura-be#readme",
+  "dependencies": {
+    "@koa/cors": "^2.2.3",
+    "@koa/router": "^8.0.8",
+    "koa": "^2.11.0",
+    "koa-bodyparser": "^4.2.1",
+    "mongoose": "^5.9.10",
+    "reflect-metadata": "^0.1.13",
+    "winston": "^3.2.1"
+  },
+  "devDependencies": {
+    "@types/koa": "^2.11.2",
+    "@types/koa-bodyparser": "^4.3.0",
+    "@types/koa__cors": "^3.0.1",
+    "@types/koa__router": "^8.0.2",
+    "@types/node": "^13.9.0",
+    "@typescript-eslint/eslint-plugin": "^2.23.0",
+    "@typescript-eslint/parser": "^2.23.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "nodemon": "^2.0.2",
+    "prettier": "^1.19.1",
+    "ts-node": "^8.6.2",
+    "typescript": "^3.8.3"
+  }
+}
