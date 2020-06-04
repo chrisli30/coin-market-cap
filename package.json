@@ -21,12 +21,14 @@
   },
   "homepage": "https://github.com/chrisli30/aura-be#readme",
   "dependencies": {
+    "@hapi/joi": "^17.1.1",
     "@koa/cors": "^2.2.3",
     "@koa/router": "^8.0.8",
     "koa": "^2.11.0",
     "koa-bodyparser": "^4.2.1",
     "mongoose": "^5.9.10",
     "reflect-metadata": "^0.1.13",
+    "tsyringe": "^4.3.0",
     "winston": "^3.2.1"
   },
   "devDependencies": {
