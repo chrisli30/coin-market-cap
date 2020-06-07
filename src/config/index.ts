@@ -12,6 +12,8 @@ if (envFound.error) {
 export default {
     port: parseInt(process.env.PORT, 10),
 
+    databaseURL: process.env.MONGODB_URI,
+
     exchangeRates: {
         host: 'https://openexchangerates.org',
         appId: process.env.EXCHANGE_RATES_APP_ID,
