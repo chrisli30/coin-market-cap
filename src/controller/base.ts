@@ -6,4 +6,18 @@ export default class BaseController {
     constructor(ctx: Koa.Context) {
         this.ctx = ctx;
     }
+
+    ok(data) {
+        this.ctx.body = {
+            code: '',
+            success: true,
+            data,
+        }
+    }
+
+    fail(error) {
+        this.ctx.body = {
+
+        }
+    }
 }
