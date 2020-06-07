@@ -1,18 +1,28 @@
 import got from 'got';
 
+import ExchangeRateModel from '../models/exchangeRate';
+
 export default class ExchangeRatesJob {
-    public async run(): Promise<any> {
+    public async handler(): Promise<any> {
         const appId = '0c05d662ae474d6595a81ef57c4c2958';
         const url = `https://openexchangerates.org/api/latest.json?app_id=${appId}`;
-        console.log('-----------3', url);
         try {
-            const res = await got.get(url, {
+            const { body } = await got.get(url, {
                 responseType: 'json',
             });
-            console.log('----------------res', res);
-            return res;
+            const { base, rates } = body as any;
+            await ExchangeRateModel.create({
+                base, rates,
+            });
+
+            // TODO send msg to mq
         } catch (error) {
-            console.log('----------4', error);
+            console.log(error);
         }
+    }
+
+    public async run(): Promise<void> {
+        this.handler();
+        setInterval(this.handler, 60 * 1000);
     }
 }
