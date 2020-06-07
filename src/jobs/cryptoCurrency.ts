@@ -1,12 +1,16 @@
 import got from 'got';
 
+import config from '../config';
+import Logger from '../loaders/logger';
 import CryptoCurrencyeModel from '../models/cryptoCurrency';
 
 export default class CryptoCurrencyJob {
     public async handler(): Promise<any> {
-        // const url = `https://pro-api.coinmarketcap.com/v1/cryptocurrency/map?symbol=BTC%2CRBTC%2CRIF`;
-        const url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?id=1%2C3626%2C3701&convert=USD';
-        const cmcKey = '171c51ce-88dd-4562-8500-97c185d022bd';
+        const { cmcKey, host } = config.cryptoCurrency;
+        const url = `${host}/v1/cryptocurrency/quotes/latest?id=1%2C3626%2C3701&convert=USD`;
+        const headers = {
+            'X-CMC_PRO_API_KEY': cmcKey,
+        };
 
         // mock data
         const symbolIds: any = [{
@@ -19,11 +23,10 @@ export default class CryptoCurrencyJob {
             id: 3701,
             symbol: 'RIF',
         },];
+
         try {
             const { body }: any = await got.get(url, {
-                headers: {
-                    'X-CMC_PRO_API_KEY': cmcKey,
-                },
+                headers,
                 responseType: 'json',
             });
 
@@ -38,13 +41,16 @@ export default class CryptoCurrencyJob {
             });
 
             // TODO send msg to mq
+
         } catch (error) {
-            console.log(error);
+            Logger.error(
+                'job: CryptoCurrencyJob, url: %s, method: get, reqHeader: %O, stack: %s',
+                url,
+                headers,
+                error.stack,
+            );
         }
     }
-
-    // get symbol Id
-
 
     public async run(): Promise<void> {
         this.handler();

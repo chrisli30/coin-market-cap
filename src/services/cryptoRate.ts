@@ -15,6 +15,28 @@ export default class ExchangeRateService extends BaseService {
 
     public async getLatestCryptoQuote() {
         const { rates } = await this.getLatestExchangeRate();
+        const { symbolQuotes } = await this.getLatestSymbolQuote();
+
         const supportedCurrency = ['USD', 'ARS', 'CNY', 'KRW', 'JPY', 'GBP'];
+
+        const data = symbolQuotes.map(({ id, symbol, quote }) => {
+            const item = {
+                id,
+                symbol,
+                price: {},
+            };
+            const baseCurrency = quote['USD'].price;
+            supportedCurrency.forEach(currency => {
+                if (!rates[currency]) {
+                    return;
+                }
+
+                item.price[currency] = rates[currency] * baseCurrency;
+            });
+
+            return item;
+        });
+
+        return data;
     }
 }

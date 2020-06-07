@@ -14,4 +14,4 @@ const ExchangeRate = new mongoose.Schema(
     { timestamps: true },
 );
 
-export default mongoose.model<IExchangeRate & mongoose.Document>('ExchangeRate', ExchangeRate);
+export default mongoose.model<IExchangeRate & mongoose.Document>('ExchangeRate', ExchangeRate, 'exchange_rate');

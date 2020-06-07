@@ -10,4 +10,4 @@ const CryptoCurrency = new mongoose.Schema(
     { timestamps: true },
 );
 
-export default mongoose.model<ICryptoCurrency & mongoose.Document>('CryptoCurrency', CryptoCurrency);
+export default mongoose.model<ICryptoCurrency & mongoose.Document>('CryptoCurrency', CryptoCurrency, 'crypto_currency');
