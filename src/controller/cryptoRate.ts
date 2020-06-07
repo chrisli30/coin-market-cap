@@ -7,4 +7,12 @@ export default class CryptoRateController extends BaseController {
         const { base, rates, } = await service.getLatestExchangeRate();
         return { base, rates, };
     }
+
+    async getLatestCryptoCurrency(ctx) {
+        const service = new ExchangeRateService(ctx);
+        const { rates, } = await service.getLatestExchangeRate();
+
+       
+        // return { base, rates, };
+    }
 }

@@ -3,8 +3,3 @@ export interface IExchangeRate {
     base: string;
     rates: object;
 }
-
-export interface IExchangeRateInputDTO {
-    base: string;
-    rates: object;
-}

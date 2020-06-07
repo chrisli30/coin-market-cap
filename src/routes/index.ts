@@ -9,4 +9,9 @@ router.get('/v1/exchangerates', async (ctx) => {
     return await controller.getLatestExchangeRate(ctx);
 });
 
+router.get('/v1/cryptocurrencies', async (ctx) => {
+    const controller = new CryptoRateController(ctx);
+    return await controller.getLatestExchangeRate(ctx);
+});
+
 export default router;
