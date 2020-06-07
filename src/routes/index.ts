@@ -6,8 +6,7 @@ const router = new Router();
 
 router.all('/', async (ctx) => {
     const controller = new DemoController(ctx);
-    console.log('----------route index');
-    ctx.body = { name: 'pony' };
+    return await controller.echo(ctx);
 });
 
 export default router;

@@ -1,10 +1,11 @@
 import BaseController from './base';
-import ExchangeRatesJob from '../jobs/exchangeRate';
+import ExchangeRateJob from '../jobs/exchangeRate';
 
 export default class DemoController extends BaseController {
     async echo(ctx) {
-        console.log('-----------zzzzzzzzdda');
-        const res = await (new ExchangeRatesJob()).run();
-        return res;
+        console.log('-------------1');
+        const { body } = await (new ExchangeRateJob()).run(ctx);
+        console.log('-------------2', body);
+        return body;
     }
 }
