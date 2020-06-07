@@ -1,6 +1,6 @@
 import Koa from 'koa';
 
-export default class BaseController {
+export default class BaseService {
     ctx: Koa.Context;
 
     constructor(ctx: Koa.Context) {
