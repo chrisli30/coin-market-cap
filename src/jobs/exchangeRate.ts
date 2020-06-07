@@ -6,11 +6,14 @@ export default class ExchangeRatesJob {
         const appId = '0c05d662ae474d6595a81ef57c4c2958';
         const url = `https://openexchangerates.org/api/latest.json?app_id=${appId}`;
         console.log('-----------3', url);
-        console.log(ctx);
-        const { body } = await got.get(url, {
-            responseType: 'json',
-        });
-        console.log('----------------res', body);
-        return body;
+        try {
+            const res = await got.get(url, {
+                responseType: 'json',
+            });
+            console.log('----------------res', res);
+            return res;
+        } catch (error) {
+            console.log('----------4', error);
+        }
     }
 }
