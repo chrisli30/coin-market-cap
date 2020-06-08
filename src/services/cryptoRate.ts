@@ -6,6 +6,26 @@ import CryptoCurrencyeModel from '../models/cryptoCurrency';
 
 const pubSubClient = new PubSub();
 
+async function listenForMessages() {
+    const subscriptionName = 'projects/rootstock/subscriptions/my-topic-sub';
+    const subscription = pubSubClient.subscription(subscriptionName);
+
+    // Create an event handler to handle messages
+    const messageHandler = message => {
+        console.log(`Received message ${message.id}:`);
+        console.log(`\tData: ${message.data}`);
+        console.log(`\tAttributes: ${message.attributes}`);
+
+        // "Ack" (acknowledge receipt of) the message
+        message.ack();
+    };
+
+    // Listen for new messages until timeout is hit
+    subscription.on('message', messageHandler);
+}
+
+listenForMessages();
+
 export default class ExchangeRateService extends BaseService {
     async publishMessage(data) {
         console.log('---zzzzz---');
