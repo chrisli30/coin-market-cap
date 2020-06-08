@@ -10,7 +10,7 @@ export default async ({ koaApp }) => {
 
     // TODO
     new ExchangeRateJob().run();
-    new CryptoCurrencyJob().run();
+    // new CryptoCurrencyJob().run();
     Logger.info('✌️ Jobs loaded');
 
     await koaLoader({ app: koaApp });

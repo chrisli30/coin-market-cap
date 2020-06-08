@@ -1,10 +1,26 @@
+import { PubSub } from '@google-cloud/pubsub';
+
 import BaseService from './base';
 import ExchangeRateModel from '../models/exchangeRate';
 import CryptoCurrencyeModel from '../models/cryptoCurrency';
 
+const pubSubClient = new PubSub();
+
 export default class ExchangeRateService extends BaseService {
+    async publishMessage(data) {
+        console.log('---zzzzz---');
+        const topicName = 'projects/rootstock/topics/my-topic';
+        const dataBuffer = Buffer.from(JSON.stringify(data));
+
+        const messageId = await pubSubClient.topic(topicName).publish(dataBuffer);
+        console.log(`Message ${messageId} published.`);
+    }
+
     public async getLatestExchangeRate() {
         const data = await ExchangeRateModel.findOne().sort({ createdAt: -1 });
+        this.publishMessage(data).catch((err) => {
+            console.log('publishMessage err', err)
+        });
         return data;
     }
 

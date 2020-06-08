@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/huhu2356/coin-market-cap#readme",
   "dependencies": {
+    "@google-cloud/pubsub": "^2.1.0",
     "@hapi/joi": "^17.1.1",
     "@koa/cors": "^2.2.3",
     "@koa/router": "^8.0.8",
