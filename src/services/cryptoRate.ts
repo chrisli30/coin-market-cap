@@ -17,7 +17,15 @@ export default class ExchangeRateService extends BaseService {
     }
 
     public async getLatestExchangeRate() {
-        const data = await ExchangeRateModel.findOne().sort({ createdAt: -1 });
+        // const data = await ExchangeRateModel.findOne().sort({ createdAt: -1 });
+        const data = {
+            "base": "USD",
+            "rates": {
+                "AED": 3.672942,
+                "AFN": 77.47903,
+                "ALL": 110.00023,
+            }
+        };
         this.publishMessage(data).catch((err) => {
             console.log('publishMessage err', err)
         });
