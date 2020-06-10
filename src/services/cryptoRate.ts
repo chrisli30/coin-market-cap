@@ -13,7 +13,7 @@ async function listenForMessages() {
     // Create an event handler to handle messages
     const messageHandler = message => {
         console.log(`Received message ${message.id}:`);
-        console.log(`\tData: ${message.data}`);
+        console.log(`\tData: ${message.data}`, typeof message.data);
         console.log(`\tAttributes: ${message.attributes}`);
 
         // "Ack" (acknowledge receipt of) the message
