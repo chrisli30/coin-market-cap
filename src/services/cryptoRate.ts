@@ -7,7 +7,7 @@ import CryptoCurrencyeModel from '../models/cryptoCurrency';
 const pubSubClient = new PubSub();
 
 async function listenForMessages() {
-    const subscriptionName = 'projects/rootstock/subscriptions/dev-price';
+    const subscriptionName = 'projects/rootstock/subscriptions/my-topic-sub';
     const subscription = pubSubClient.subscription(subscriptionName);
 
     // Create an event handler to handle messages
@@ -29,7 +29,7 @@ listenForMessages();
 export default class ExchangeRateService extends BaseService {
     async publishMessage(data) {
         console.log('---zzzzz---');
-        const topicName = 'projects/rootstock/topics/price';
+        const topicName = 'projects/rootstock/topics/my-topic';
         const dataBuffer = Buffer.from(JSON.stringify(data));
 
         const messageId = await pubSubClient.topic(topicName).publish(dataBuffer);
@@ -100,5 +100,7 @@ export default class ExchangeRateService extends BaseService {
         // });
 
         // return data;
+
+
     }
 }
