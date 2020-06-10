@@ -7,7 +7,7 @@ import CryptoCurrencyeModel from '../models/cryptoCurrency';
 const pubSubClient = new PubSub();
 
 async function listenForMessages() {
-    const subscriptionName = 'projects/rootstock/subscriptions/my-topic-sub';
+    const subscriptionName = 'projects/rootstock/subscriptions/dev-price';
     const subscription = pubSubClient.subscription(subscriptionName);
 
     // Create an event handler to handle messages
