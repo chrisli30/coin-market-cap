@@ -29,7 +29,7 @@ listenForMessages();
 export default class ExchangeRateService extends BaseService {
     async publishMessage(data) {
         console.log('---zzzzz---');
-        const topicName = 'projects/rootstock/topics/my-topic';
+        const topicName = 'projects/rootstock/topics/price';
         const dataBuffer = Buffer.from(JSON.stringify(data));
 
         const messageId = await pubSubClient.topic(topicName).publish(dataBuffer);
