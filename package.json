@@ -4,10 +4,13 @@
   "description": "",
   "main": "src/app.ts",
   "scripts": {
-    "start": "nodemon",
+    "dev": "nodemon",
+    "start": "node ./dist/app.js",
     "test": "jest",
     "lint": "eslint src/ --ignore-path .gitignore --ext .ts",
-    "lint:fix": "npm run lint -- --fix"
+    "lint:fix": "npm run lint -- --fix",
+    "build": "tsc",
+    "gcp-build": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -31,7 +34,8 @@
     "koa-bodyparser": "^4.2.1",
     "mongoose": "^5.9.10",
     "uuid": "^8.1.0",
-    "winston": "^3.2.1"
+    "winston": "^3.2.1",
+    "typescript": "^3.8.3"
   },
   "devDependencies": {
     "@types/got": "^9.6.11",
@@ -48,7 +52,6 @@
     "eslint-plugin-prettier": "^3.1.2",
     "nodemon": "^2.0.2",
     "prettier": "^1.19.1",
-    "ts-node": "^8.6.2",
-    "typescript": "^3.8.3"
+    "ts-node": "^8.6.2"
   }
 }
