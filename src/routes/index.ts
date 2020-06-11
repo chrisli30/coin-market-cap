@@ -14,7 +14,7 @@ router.get('/v1/cryptocurrency', async (ctx) => {
     return await controller.getLatestCryptoCurrency(ctx);
 });
 
-router.get('/', async (ctx) => {
+router.all('/', async (ctx) => {
     return process.env.NODE_ENV;
 });
 

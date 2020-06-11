@@ -1,4 +1,5 @@
 import got from 'got';
+import { PubSub } from '@google-cloud/pubsub';
 
 import config from '../config';
 import Logger from '../loaders/logger';
