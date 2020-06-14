@@ -7,6 +7,7 @@ async function startServer() {
     const app: any = new Koa();
 
     app.config = config;
+    app.context.config = config;
 
     /**
      * A little hack here
