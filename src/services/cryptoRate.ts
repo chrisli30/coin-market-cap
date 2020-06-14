@@ -1,7 +1,7 @@
 import BaseService from './base';
 import ExchangeRateModel from '../models/exchangeRate';
 import CryptoCurrencyeModel from '../models/cryptoCurrency';
-import PubSubService from './pubsub';
+// import PubSubService from './pubsub';
 
 export default class ExchangeRateService extends BaseService {
     public async getLatestExchangeRate() {
@@ -51,10 +51,10 @@ export default class ExchangeRateService extends BaseService {
     public async sendCryptoQuoteMsg({ topicName, symbolQuotes }) {
         const msgData = await this.getLatestCryptoQuote({ rates: undefined, symbolQuotes });
 
-        const pubSubService = new PubSubService();
-        await pubSubService.publishMsg({
-            topicName,
-            data: msgData,
-        });
+        // const pubSubService = new PubSubService();
+        // await pubSubService.publishMsg({
+        //     topicName,
+        //     data: msgData,
+        // });
     }
 }
