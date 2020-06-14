@@ -11,6 +11,7 @@ before run app, should update .env file
     2. npm run start
 
 ## TODO
+1. complete typescript types [enhancement]
 1. add docker support [enhancement]
 1. add google secret manager support [enhancement]
 1. use dependency injection by TSyringe [enhancement]
