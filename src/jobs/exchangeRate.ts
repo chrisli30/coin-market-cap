@@ -17,9 +17,6 @@ export default class ExchangeRatesJob {
             await ExchangeRateModel.create({
                 base, rates,
             });
-
-            // TODO send msg to mq
-
         } catch (error) {
             Logger.error(
                 'job: ExchangeRatesJob, url: %s, method: get, stack: %s',

@@ -14,8 +14,8 @@ router.get('/v1/cryptocurrency', async (ctx) => {
     return await controller.getLatestCryptoCurrency(ctx);
 });
 
-router.all('/', async (ctx) => {
-    return process.env.NODE_ENV;
+router.all('/', async () => {
+    return `coin-market-cap server is run in ${process.env.NODE_ENV}`;
 });
 
 export default router;
