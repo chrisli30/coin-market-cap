@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/huhu2356/coin-market-cap#readme",
   "dependencies": {
+    "@google-cloud/logging-winston": "^3.0.6",
     "@google-cloud/pubsub": "^2.1.0",
     "@hapi/joi": "^17.1.1",
     "@koa/cors": "^2.2.3",
@@ -33,9 +34,9 @@
     "koa": "^2.11.0",
     "koa-bodyparser": "^4.2.1",
     "mongoose": "^5.9.10",
+    "typescript": "^3.8.3",
     "uuid": "^8.1.0",
-    "winston": "^3.2.1",
-    "typescript": "^3.8.3"
+    "winston": "^3.2.1"
   },
   "devDependencies": {
     "@types/got": "^9.6.11",

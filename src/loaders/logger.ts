@@ -1,10 +1,12 @@
 import winston from 'winston';
+import { LoggingWinston } from '@google-cloud/logging-winston';
+
 import config from '../config';
 
 const transports = [];
 if (process.env.NODE_ENV !== 'development') {
     transports.push(
-        new winston.transports.Console()
+        new LoggingWinston(),
     );
 } else {
     transports.push(
@@ -16,8 +18,6 @@ if (process.env.NODE_ENV !== 'development') {
         })
     );
 }
-
-transports.push(new winston.transports.File({ filename: 'quick-start-combined.log' }))
 
 const LoggerInstance = winston.createLogger({
     level: config.logs.level,
