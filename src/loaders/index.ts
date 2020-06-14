@@ -9,8 +9,8 @@ export default async ({ koaApp }) => {
     Logger.info('✌️ DB loaded and connected!');
 
     // TODO
-    new ExchangeRateJob().run();
-    new CryptoCurrencyJob().run();
+    new ExchangeRateJob(koaApp).run();
+    new CryptoCurrencyJob(koaApp).run();
     Logger.info('✌️ Jobs loaded');
 
     await koaLoader({ app: koaApp });

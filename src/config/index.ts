@@ -22,10 +22,16 @@ export default {
     exchangeRates: {
         host: 'https://openexchangerates.org',
         appId: process.env.EXCHANGE_RATES_APP_ID,
+        interval: 60,
     },
 
     cryptoCurrency: {
         host: 'https://pro-api.coinmarketcap.com',
         cmcKey: process.env.CMC_KEY,
+        interval: 60,
+    },
+
+    topic: {
+        price: 'projects/rootstock/topics/price'
     },
 };

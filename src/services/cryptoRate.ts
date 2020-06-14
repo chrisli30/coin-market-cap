@@ -1,6 +1,7 @@
 import BaseService from './base';
 import ExchangeRateModel from '../models/exchangeRate';
 import CryptoCurrencyeModel from '../models/cryptoCurrency';
+import PubSubService from './pubsub';
 
 export default class ExchangeRateService extends BaseService {
     public async getLatestExchangeRate() {
@@ -13,9 +14,15 @@ export default class ExchangeRateService extends BaseService {
         return data;
     }
 
-    public async getLatestCryptoQuote() {
-        const { rates } = await this.getLatestExchangeRate();
-        const { symbolQuotes } = await this.getLatestSymbolQuote();
+    public async getLatestCryptoQuote({ rates, symbolQuotes }: { rates?: any, symbolQuotes?: any }) {
+        if (!rates) {
+            const resRates = await this.getLatestExchangeRate();
+            rates = resRates.rates;
+        }
+        if (!symbolQuotes) {
+            const resSymbolQuotes = await this.getLatestSymbolQuote();
+            symbolQuotes = resSymbolQuotes.symbolQuotes;
+        }
 
         const supportedCurrency = ['USD', 'ARS', 'CNY', 'KRW', 'JPY', 'GBP'];
 
@@ -39,5 +46,15 @@ export default class ExchangeRateService extends BaseService {
         });
 
         return data;
+    }
+
+    public async sendCryptoQuoteMsg({ topicName, symbolQuotes }) {
+        const msgData = await this.getLatestCryptoQuote({ rates: undefined, symbolQuotes });
+
+        const pubSubService = new PubSubService();
+        await pubSubService.publishMsg({
+            topicName,
+            data: msgData,
+        });
     }
 }

@@ -1,18 +1,20 @@
 import got from 'got';
 
-import config from '../config';
 import Logger from '../loaders/logger';
 import ExchangeRateModel from '../models/exchangeRate';
+import BaseJob from './baseJob';
 
-export default class ExchangeRatesJob {
-    public async handler(): Promise<any> {
-        const { appId, host } = config.exchangeRates;
+export default class ExchangeRatesJob extends BaseJob {
+    public async handler(): Promise<void> {
+        const { appId, host } = this.app.config.exchangeRates;
         const url = `${host}/api/latest.json?app_id=${appId}`;
         try {
             const { body } = await got.get(url, {
                 responseType: 'json',
             });
             const { base, rates } = body as any;
+
+            Logger.info('job: ExchangeRatesJob, url: %s, method: get, base: %s, rates: %O', url, base, rates);
 
             await ExchangeRateModel.create({
                 base,
@@ -24,7 +26,8 @@ export default class ExchangeRatesJob {
     }
 
     public async run(): Promise<void> {
+        const { interval } = this.app.config.exchangeRates;
         this.handler();
-        setInterval(this.handler, 60 * 1000);
+        setInterval(this.handler.bind(this), interval * 1000);
     }
 }
