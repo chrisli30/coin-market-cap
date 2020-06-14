@@ -1,11 +1,13 @@
-import 'reflect-metadata'; // We need this in order to use @Decorators
-
-import config from './config';
-
 import Koa from 'koa';
 
+import config from './config';
+import Logger from './loaders/logger';
+
 async function startServer() {
-    const app = new Koa();
+    const app: any = new Koa();
+
+    app.config = config;
+    app.context.config = config;
 
     /**
      * A little hack here
@@ -16,7 +18,7 @@ async function startServer() {
     await require('./loaders').default({ koaApp: app });
 
     app.listen(config.port, () => {
-        console.info(`
+        Logger.info(`
         ################################################
         🛡️  Server listening on port: ${config.port} 🛡️ 
         ################################################
