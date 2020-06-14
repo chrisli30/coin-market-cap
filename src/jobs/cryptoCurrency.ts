@@ -36,11 +36,11 @@ export default class CryptoCurrencyJob extends BaseJob {
                 symbolQuotes: this.symbolIds,
             });
 
-            // const cryptoRateService = new CryptoRateService();
-            // await cryptoRateService.sendCryptoQuoteMsg({
-            //     topicName: this.app.config.topic.price,
-            //     symbolQuotes: this.symbolIds,
-            // });
+            const cryptoRateService = new CryptoRateService();
+            await cryptoRateService.sendCryptoQuoteMsg({
+                topicName: this.app.config.topic.price,
+                symbolQuotes: this.symbolIds,
+            });
         } catch (error) {
             Logger.error('job: CryptoCurrencyJob, stack: %s', error.stack);
         }
