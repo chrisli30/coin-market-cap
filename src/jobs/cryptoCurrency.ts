@@ -42,10 +42,7 @@ export default class CryptoCurrencyJob extends BaseJob {
                 symbolQuotes: this.symbolIds,
             });
         } catch (error) {
-            Logger.error(
-                'job: CryptoCurrencyJob, stack: %s',
-                error.stack,
-            );
+            Logger.error('job: CryptoCurrencyJob, stack: %s', error.stack);
         }
     }
 
@@ -56,7 +53,8 @@ export default class CryptoCurrencyJob extends BaseJob {
         });
 
         const symbolIds = resSymbolIds.data.map(({ id, symbol }) => ({
-            id, symbol,
+            id,
+            symbol,
         }));
 
         return symbolIds;

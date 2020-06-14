@@ -32,6 +32,6 @@ export default {
     },
 
     topic: {
-        price: 'projects/rootstock/topics/price'
+        price: 'projects/rootstock/topics/price',
     },
 };

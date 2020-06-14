@@ -14,7 +14,7 @@ export default class ExchangeRateService extends BaseService {
         return data;
     }
 
-    public async getLatestCryptoQuote({ rates, symbolQuotes }: { rates?: any, symbolQuotes?: any }) {
+    public async getLatestCryptoQuote({ rates, symbolQuotes }: { rates?: any; symbolQuotes?: any }) {
         if (!rates) {
             const resRates = await this.getLatestExchangeRate();
             rates = resRates.rates;
