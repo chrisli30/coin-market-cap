@@ -7,7 +7,7 @@
         ],
         "typeRoots": [
             "./node_modules/@types",
-            "./src/types"
+            "./src/interfaces"
         ],
         "allowSyntheticDefaultImports": true,
         "experimentalDecorators": true,
@@ -27,6 +27,6 @@
     ],
     "exclude": [
         "node_modules",
-        "tests"
+        "test"
     ]
 }
