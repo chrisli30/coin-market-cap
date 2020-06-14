@@ -14,16 +14,20 @@ export default class CryptoCurrencyJob {
         };
 
         // mock data
-        const symbolIds: any = [{
-            id: 1,
-            symbol: 'BTC',
-        }, {
-            id: 3626,
-            symbol: 'RBTC',
-        }, {
-            id: 3701,
-            symbol: 'RIF',
-        },];
+        const symbolIds: any = [
+            {
+                id: 1,
+                symbol: 'BTC',
+            },
+            {
+                id: 3626,
+                symbol: 'RBTC',
+            },
+            {
+                id: 3701,
+                symbol: 'RIF',
+            },
+        ];
 
         try {
             const { body }: any = await got.get(url, {
@@ -42,7 +46,6 @@ export default class CryptoCurrencyJob {
             });
 
             // TODO send msg to mq
-
         } catch (error) {
             Logger.error(
                 'job: CryptoCurrencyJob, url: %s, method: get, reqHeader: %O, stack: %s',

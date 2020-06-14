@@ -4,8 +4,8 @@ import CryptoRateService from '../services/cryptoRate';
 export default class CryptoRateController extends BaseController {
     async getLatestExchangeRate(ctx) {
         const service = new CryptoRateService(ctx);
-        const { base, rates, } = await service.getLatestExchangeRate();
-        return { base, rates, };
+        const { base, rates } = await service.getLatestExchangeRate();
+        return { base, rates };
     }
 
     async getLatestCryptoCurrency(ctx) {

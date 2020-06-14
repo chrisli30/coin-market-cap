@@ -15,14 +15,11 @@ export default class ExchangeRatesJob {
             const { base, rates } = body as any;
 
             await ExchangeRateModel.create({
-                base, rates,
+                base,
+                rates,
             });
         } catch (error) {
-            Logger.error(
-                'job: ExchangeRatesJob, url: %s, method: get, stack: %s',
-                url,
-                error.stack,
-            );
+            Logger.error('job: ExchangeRatesJob, url: %s, method: get, stack: %s', url, error.stack);
         }
     }
 
