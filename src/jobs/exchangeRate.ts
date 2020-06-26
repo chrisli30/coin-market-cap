@@ -6,7 +6,7 @@ import BaseJob from './baseJob';
 
 export default class ExchangeRatesJob extends BaseJob {
     public async handler(): Promise<void> {
-        const { appId, host } = this.app.config.exchangeRates;
+        const { appId, host } = this.ctx.config.exchangeRates;
         const url = `${host}/api/latest.json?app_id=${appId}`;
         try {
             const { body } = await got.get(url, {
@@ -26,7 +26,7 @@ export default class ExchangeRatesJob extends BaseJob {
     }
 
     public async run(): Promise<void> {
-        const { interval } = this.app.config.exchangeRates;
+        const { interval } = this.ctx.config.exchangeRates;
         this.handler();
         setInterval(this.handler.bind(this), interval * 1000);
     }

@@ -1,7 +1,9 @@
-export default class BaseJob {
-    app: any;
+import App from '../extend/app';
 
-    constructor(app) {
-        this.app = app;
+export default class BaseJob {
+    protected ctx: App.Context;
+
+    constructor(ctx: App.Context) {
+        this.ctx = ctx;
     }
 }

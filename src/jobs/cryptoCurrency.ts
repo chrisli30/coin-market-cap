@@ -6,16 +6,11 @@ import CryptoCurrencyeModel from '../models/cryptoCurrency';
 import BaseJob from './baseJob';
 import CryptoRateService from '../services/cryptoRate';
 
-export default class CryptoCurrencyJob extends BaseJob {
-    symbols: string[];
-    baseCurrency: string;
-    symbolIds: { [name: string]: any }[];
+const symbols = ['BTC', 'RBTC', 'RIF'];
+const baseCurrency = 'USD';
 
-    public constructor(app) {
-        super(app);
-        this.symbols = ['BTC', 'RBTC', 'RIF'];
-        this.baseCurrency = 'USD';
-    }
+export default class CryptoCurrencyJob extends BaseJob {
+    symbolIds: { [name: string]: any }[];
 
     public async handler(): Promise<any> {
         try {
@@ -38,7 +33,7 @@ export default class CryptoCurrencyJob extends BaseJob {
 
             const cryptoRateService = new CryptoRateService();
             await cryptoRateService.sendCryptoQuoteMsg({
-                topicName: this.app.config.topic.price,
+                topicName: this.ctx.config.topic.price,
                 symbolQuotes: this.symbolIds,
             });
         } catch (error) {
@@ -47,7 +42,7 @@ export default class CryptoCurrencyJob extends BaseJob {
     }
 
     public async getTokenIds() {
-        const params = querystring.stringify({ symbol: this.symbols.join(',') });
+        const params = querystring.stringify({ symbol: symbols.join(',') });
         const resSymbolIds = await this.fetch({
             action: `/v1/cryptocurrency/map?${params}`,
         });
@@ -64,7 +59,7 @@ export default class CryptoCurrencyJob extends BaseJob {
         const idStr = this.symbolIds.map(({ id }) => id).join(',');
         const params = querystring.stringify({
             id: idStr,
-            convert: this.baseCurrency,
+            convert: baseCurrency,
         });
 
         const { data } = await this.fetch({
@@ -75,7 +70,7 @@ export default class CryptoCurrencyJob extends BaseJob {
     }
 
     public async fetch({ action }) {
-        const { cmcKey, host } = this.app.config.cryptoCurrency;
+        const { cmcKey, host } = this.ctx.config.cryptoCurrency;
         const url = `${host}${action}`;
         const headers = {
             'X-CMC_PRO_API_KEY': cmcKey,
@@ -92,7 +87,7 @@ export default class CryptoCurrencyJob extends BaseJob {
     }
 
     public async run(): Promise<void> {
-        const { interval } = this.app.config.cryptoCurrency;
+        const { interval } = this.ctx.config.cryptoCurrency;
         this.handler();
         setInterval(this.handler.bind(this), interval * 1000);
     }

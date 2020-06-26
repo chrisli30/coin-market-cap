@@ -1,10 +1,10 @@
-import Koa from 'koa';
+import App from './extend/app';
 
 import config from './config';
 import Logger from './loaders/logger';
 
 async function startServer() {
-    const app: any = new Koa();
+    const app = new App();
 
     app.config = config;
     app.context.config = config;
