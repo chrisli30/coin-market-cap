@@ -17,7 +17,7 @@ class ExtendApp extends Koa {
         const req = new IncomingMessage({} as Socket);
         const res = new ServerResponse(req);
 
-        return this.createContext(req, res);
+        return this.createContext(req, res) as ExtendApp.Context;
     }
 
     [prop: string]: any;
