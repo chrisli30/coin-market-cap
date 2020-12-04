@@ -14,6 +14,11 @@ router.get('/v1/cryptocurrency', async ctx => {
     return await controller.getLatestCryptoCurrency(ctx);
 });
 
+router.get('/v1/txpair', async ctx => {
+    const controller = new CryptoRateController(ctx);
+    return await controller.getTxPair(ctx);
+});
+
 router.all('/', async () => {
     return `coin-market-cap server is run in ${process.env.NODE_ENV}`;
 });
