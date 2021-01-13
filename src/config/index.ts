@@ -31,6 +31,11 @@ export default {
         interval: 120,
     },
 
+    kucoin: {
+        host: 'https://trade.kucoin.com',
+        interval: 120,
+    },
+
     topic: {
         price: 'projects/rootstock/topics/price',
     },

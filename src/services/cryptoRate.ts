@@ -30,9 +30,8 @@ export default class ExchangeRateService extends BaseService {
 
         const supportedCurrency = ['USD', 'ARS', 'CNY', 'KRW', 'JPY', 'GBP'];
 
-        const data = symbolQuotes.map(({ id, symbol, quote, timestamp }) => {
+        const data = symbolQuotes.map(({ symbol, quote, timestamp }) => {
             const item = {
-                id,
                 symbol,
                 price: {},
                 timestamp,
