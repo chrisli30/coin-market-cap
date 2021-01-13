@@ -37,6 +37,6 @@ export default {
     },
 
     topic: {
-        price: 'projects/rootstock/topics/price',
+        price: process.env.PRICE_TOPIC,
     },
 };
