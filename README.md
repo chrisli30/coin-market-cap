@@ -13,9 +13,9 @@ before run app, should update .env file
 ## Deployment
 1. create .env file
 1. ```gcloud config get-value project``` to check which project is currently active
-1. ```gcloud config set project my-project``` to change current project
-1. ```gcloud projects list``` to get the project names list
-1. ```gcloud app deploy``` to deployed app for the current project 
+1. ```gcloud config set project PROJECT_ID``` to change current project
+1. ```gcloud projects list``` to list projects accessible by the active account
+1. ```gcloud app deploy``` to deployed app for the current project, also can add ```--project=PROJECT_ID``` flag to specify project ID to use for this invocation
 
 ## TODO
 1. complete typescript types [enhancement]
