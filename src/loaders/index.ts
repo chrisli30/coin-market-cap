@@ -2,7 +2,8 @@ import Logger from './logger';
 import mongooseLoader from './mongoose';
 import koaLoader from './koa';
 import ExchangeRateJob from '../jobs/exchangeRate';
-import CryptoCurrencyJob from '../jobs/cryptoCurrency';
+// import CryptoCurrencyJob from '../jobs/cryptoCurrency';
+import KucoinJob from '../jobs/kucoin';
 
 export default async ({ koaApp }) => {
     const mongoConnection = await mongooseLoader();
@@ -10,7 +11,8 @@ export default async ({ koaApp }) => {
 
     // TODO
     new ExchangeRateJob(koaApp).run();
-    new CryptoCurrencyJob(koaApp).run();
+    // new CryptoCurrencyJob(koaApp).run();
+    new KucoinJob(koaApp).run();
     Logger.info('✌️ Jobs loaded');
 
     await koaLoader({ app: koaApp });
