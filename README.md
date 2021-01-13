@@ -6,11 +6,16 @@ before run app, should update .env file
 
 - development
     1. npm run dev
-- deploy
+- production
     1. npm run build
     2. npm run start
 
 ## Deployment
+1. create .env file
+1. ```gcloud config get-value project``` to check which project is currently active
+1. ```gcloud config set project my-project``` to change current project
+1. ```gcloud projects list``` to get the project names list
+1. ```gcloud app deploy``` to deployed app for the current project 
 
 ## TODO
 1. complete typescript types [enhancement]
