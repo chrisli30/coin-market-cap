@@ -31,6 +31,11 @@ export default {
         interval: 120,
     },
 
+    huobi: {
+        host: 'https://api.huobi.pro',
+        interval: 120,
+    },
+
     topic: {
         price: 'projects/rootstock/topics/price',
     },
