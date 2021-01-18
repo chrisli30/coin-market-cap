@@ -31,6 +31,16 @@ export default {
         interval: 120,
     },
 
+    huobi: {
+        host: 'https://api.huobi.pro',
+        interval: 120,
+    },
+
+    binance: {
+        host: 'https://api.binance.com',
+        interval: 120,
+    },
+
     topic: {
         price: process.env.PRICE_TOPIC,
     },
